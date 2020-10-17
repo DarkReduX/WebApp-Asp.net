@@ -280,6 +280,7 @@
     <Content Include="fonts\MagicalStylishSansSerifDemo-qLKq.otf" />
     <Content Include="fonts\Lollipoptron-7GPD.ttf" />
     <Content Include="Scripts\Earth.obj" />
+    <Content Include="fonts\OpenSans-Bold.ttf" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\Earth.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />

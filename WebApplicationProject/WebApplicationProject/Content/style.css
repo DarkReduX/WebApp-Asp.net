@@ -1,29 +1,50 @@
-@font-face {
+/*@font-face {
     font-family: "Minecraft";
-    src: url("../fonts/Lollipoptron-7GPD.ttf");
+    src: url("../fonts/16596.ttf");
+}*/
+
+@font-face {
+    font-family: "Open Sans Bold";
+    src: url("../fonts/OpenSans-Bold.ttf");
 }
 body {
     background-color: black;
-    color: #117a8e;
-    font-family: EagleSans;
-}
-canvas{
-    width:100%!important;
-    height:100%!important;
-    
-}
-a{
+    color: white;   
+    font-family: 'Open Sans Bold';
+    font-weight: 500;
+}   
+
+a {
     color: #b52459;
 }
+
+.btn-primary {
+    color: #fff;
+    background-color: #4e714e;
+    border-color: black;
+}
+
+    .btn-primary:hover {
+        color: #fff;
+        background-color: #f8be54;
+        border-color: black;
+    }
+
 .navbar-inverse .navbar-nav > li > a {
-    color: #117a8e;
+    /*color: #b19dfa;*/
+    /*color: #dbfb25;*/ 
+    /*color: #ff6a00;*/
+    color: #c87732 ;
 }
+
 .navbar-inverse .navbar-brand {
-    color: #fff;    
+    color: #fff;
 }
-.jumbotron{
+
+.jumbotron {
     background-color: #1e1e1e;
 }
+
 body,
 html {
     margin: 0;
