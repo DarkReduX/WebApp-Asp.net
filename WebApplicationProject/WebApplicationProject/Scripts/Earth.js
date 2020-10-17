@@ -13,7 +13,7 @@ var sphere = new THREE.Mesh(geometry, material);
 //load a resource
 loader.load(
     // resource URL
-    'Earth.obj  ',
+    '/Scripts/Earth.obj  ',
     // called when resource is loaded
     function (object) {
         scene.add(object);
