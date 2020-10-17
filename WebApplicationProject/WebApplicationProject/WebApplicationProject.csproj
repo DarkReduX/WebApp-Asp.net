@@ -257,21 +257,31 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\RegistrationDatabase.mdf" />
-    <Content Include="App_Data\RegistrationDatabase_log.ldf">
-      <DependentUpon>RegistrationDatabase.mdf</DependentUpon>
+    <Content Include="App_Data\aspnet-WebApplicationProject-20201001115937.mdf" />
+    <Content Include="App_Data\aspnet-WebApplicationProject-20201001115937_log.ldf">
+      <DependentUpon>aspnet-WebApplicationProject-20201001115937.mdf</DependentUpon>
     </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap.min.js" />
+    <Content Include="Content\Earth.js" />
+    <Content Include="Content\model3d.js" />
+    <Content Include="Content\OBJLoader.js" />
+    <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="fonts\16596.ttf" />
+    <Content Include="fonts\MagicalStylishSansSerifDemo-qLKq.otf" />
+    <Content Include="fonts\Lollipoptron-7GPD.ttf" />
+    <Content Include="Scripts\Earth.obj" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\Earth.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -281,7 +291,11 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\model3d.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\OBJLoader.js" />
+    <Content Include="Scripts\three.js" />
+    <Content Include="Scripts\three.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -316,6 +330,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Home\DisplayEmail.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
