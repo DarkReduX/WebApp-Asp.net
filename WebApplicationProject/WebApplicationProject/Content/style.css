@@ -4,13 +4,13 @@
 }*/
 
 @font-face {
-    font-family: "Open Sans Bold";
-    src: url("../fonts/OpenSans-Bold.ttf");
+    font-family: "Open Sans Extra-Bold";
+    src: url("../fonts/OpenSans-ExtraBold.ttf");
 }
 body {
     background-color: black;
     color: white;   
-    font-family: 'Open Sans Bold';
+    font-family: 'Open Sans Extra-Bold';
     font-weight: 500;
 }   
 
@@ -26,7 +26,8 @@ a {
 
     .btn-primary:hover {
         color: #fff;
-        background-color: #f8be54;
+        /*background-color: #f8be54;*/
+        background-color: #976d93; 
         border-color: black;
     }
 
