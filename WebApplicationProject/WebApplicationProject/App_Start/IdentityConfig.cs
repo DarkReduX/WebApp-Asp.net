@@ -21,8 +21,8 @@ namespace WebApplicationProject
         {
             // Подключите здесь службу электронной почты для отправки сообщения электронной почты.
             // настройка логина, пароля отправителя
-            var from = "lobcko.artem@yandex.ru";
-            var pass = "Qwerty_1234";
+            var from = "kirya432@yandex.ru";
+            var pass = "Qwerty_1";
 
             //var from = "dentwo50@gmail.com";
             //var pass = "12345";

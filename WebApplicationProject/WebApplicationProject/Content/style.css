@@ -7,12 +7,13 @@
     font-family: "Open Sans Extra-Bold";
     src: url("../fonts/OpenSans-ExtraBold.ttf");
 }
+
 body {
     background-color: black;
-    color: white;   
+    color: white;
     font-family: 'Open Sans Extra-Bold';
     font-weight: 500;
-}   
+}
 
 a {
     color: #b52459;
@@ -23,19 +24,28 @@ a {
     background-color: #4e714e;
     border-color: black;
 }
+.news{
 
+}
     .btn-primary:hover {
         color: #fff;
         /*background-color: #f8be54;*/
-        background-color: #976d93; 
+        background-color: #976d93;
+        border-color: black;
+    }
+
+    .btn-primary:focus {
+        color: #fff;
+        /*background-color: #f8be54;*/
+        background-color: #4e714e;
         border-color: black;
     }
 
 .navbar-inverse .navbar-nav > li > a {
     /*color: #b19dfa;*/
-    /*color: #dbfb25;*/ 
+    /*color: #dbfb25;*/
     /*color: #ff6a00;*/
-    color: #c87732 ;
+    color: #c87732;
 }
 
 .navbar-inverse .navbar-brand {
@@ -133,4 +143,9 @@ html {
     left: 2em;
     tranform: translateX(-50%);
     font-weight: bold;
+}
+
+#threeModel {
+    width: 100%;
+    height: 100%;
 }
