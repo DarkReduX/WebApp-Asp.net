@@ -1,3 +1,16 @@
+@keyframes flip {
+    0% {
+        transform: rotate(0);
+    }
+
+    50% {
+        transform: rotateY(180deg);
+    }
+
+    100% {
+        transform: rotateY(180deg) rotateX(180deg);
+    }
+}
 /*@font-face {
     font-family: "Minecraft";
     src: url("../fonts/16596.ttf");
@@ -24,22 +37,32 @@ a {
     background-color: #4e714e;
     border-color: black;
 }
-.news{
 
+.news {
+    margin: 150px;
+    background: #1e1e1e;
 }
-    .btn-primary:hover {
-        color: #fff;
-        /*background-color: #f8be54;*/
-        background-color: #976d93;
-        border-color: black;
-    }
 
-    .btn-primary:focus {
-        color: #fff;
-        /*background-color: #f8be54;*/
-        background-color: #4e714e;
-        border-color: black;
-    }
+
+.article-header {
+}
+
+.article-info {
+}
+
+.btn-primary:hover {
+    color: #fff;
+    /*background-color: #f8be54;*/
+    background-color: #976d93;
+    border-color: black;
+}
+
+.btn-primary:focus {
+    color: #fff;
+    /*background-color: #f8be54;*/
+    background-color: #4e714e;
+    border-color: black;
+}
 
 .navbar-inverse .navbar-nav > li > a {
     /*color: #b19dfa;*/
@@ -121,19 +144,6 @@ html {
         animation: flip 1s infinite;
     }
 
-@keyframes flip {
-    0% {
-        transform: rotate(0);
-    }
-
-    50% {
-        transform: rotateY(180deg);
-    }
-
-    100% {
-        transform: rotateY(180deg) rotateX(180deg);
-    }
-}
 
 .tutorial-link {
     position: absolute;
