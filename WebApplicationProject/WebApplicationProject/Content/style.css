@@ -31,7 +31,9 @@ body {
 a {
     color: #b52459;
 }
-
+.page-head{
+    margin: 50px;
+}
 .btn-primary {
     color: #fff;
     background-color: #4e714e;
