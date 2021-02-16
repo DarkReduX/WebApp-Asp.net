@@ -13,7 +13,7 @@ scene.add(camera); function render() {
 }
 render();
 var sphereGeometry = new THREE.SphereGeometry(10, 10, 10);
-var basicMaterial = new THREE.MeshBasicMaterial({ color: 0x0095DD, wireframe: true });
+var basicMaterial = new THREE.MeshBasicMaterial({ color: 0x0095DD, wireframe: false, alphaMap: "/Content/Images/earthspec1k.jpg"});
 var sphere = new THREE.Mesh(sphereGeometry, basicMaterial);
 scene.add(sphere);
 sphere.rotation.set(0., 0., 0);

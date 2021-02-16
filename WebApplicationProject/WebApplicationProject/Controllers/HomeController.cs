@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -31,7 +32,36 @@ namespace WebApplicationProject.Controllers
         }
         public ActionResult News()
         {
-            return View(db.news);
+            return View(db.News);
+        }
+        public ActionResult Post()
+        {
+            return View();
+        }
+        public ActionResult CreatePost()
+        {
+            return View();
+        }
+        [HttpGet]
+        public ActionResult EditPost(int? post_id)
+        {
+            if (post_id == null)
+            {
+                return HttpNotFound();
+            }
+            News post = db.News.Find(post_id);
+            if (post != null)
+            {
+                return View(post);
+            }
+            return HttpNotFound();
+        }
+        [HttpPost]
+        public ActionResult EditPost(News post)
+        {
+            db.Entry(post).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("News");
         }
     }
 }

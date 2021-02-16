@@ -1,4 +1,4 @@
-﻿* Follow the tutorial here:
+﻿/* Follow the tutorial here:
 https://tympanus.net/codrops/2019/10/14/how-to-create-an-interactive-3d-character-with-three-js/
 * /
 
@@ -308,4 +308,4 @@ https://tympanus.net/codrops/2019/10/14/how-to-create-an-interactive-3d-characte
             return { x: dx, y: dy };
         }
 
-    })();
+    })();*/

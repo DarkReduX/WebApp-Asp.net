@@ -4,12 +4,41 @@
     ViewBag.Title = "News";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="jumbotron">
-    @foreach (WebApplicationProject.Models.News item in Model)
+
+<h2>News</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.header)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.info)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
     {
-        <div class="article">
-            <header class="article-header">@item.header</header>
-            <article class="article-info">@item.info</article>
-        </div>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.header)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.info)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditPost", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        </tr>
     }
-</div>
+
+</table>

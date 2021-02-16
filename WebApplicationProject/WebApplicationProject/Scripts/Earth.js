@@ -1,5 +1,5 @@
-﻿
-//var loader = new THREE.OBJLoader();
+﻿import * as THREE from 'https://threejsfundamentals.org/threejs/resources/threejs/r122/build/three.module.js';
+var loader = new THREE.TextureLoader();
 var canvas = document.getElementById('threeModel');
 var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -7,7 +7,8 @@ var renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
 renderer.setClearColor(0x000000, 0);
 renderer.setSize(window.innerWidth/2, window.innerHeight/2);
 var geometry = new THREE.SphereGeometry();
-var material = new THREE.MeshBasicMaterial({ color: 0x117a8e, skinning: true, wireframeLinewidth: 100, wireframe: true });
+var earthMap = loader.load("/Content/Images/map.png")
+var material = new THREE.MeshBasicMaterial({ color: 0x117a8e, skinning: true, alphaMap: earthMap });
 var sphere = new THREE.Mesh(geometry, material);
 
 //load a resource

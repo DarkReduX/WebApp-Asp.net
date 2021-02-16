@@ -8,7 +8,7 @@ namespace WebApplicationProject.Models
 {
     public class NewsContext : DbContext
     {
-            public DbSet<News> news { get; set; }
-
+            public DbSet<News> News { get; set; }
+        
     }
 }

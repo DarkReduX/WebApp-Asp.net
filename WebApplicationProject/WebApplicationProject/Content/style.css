@@ -135,16 +135,16 @@ html {
     height: 100px;
 }
 
-    .loader:before {
-        content: "";
-        position: absolute;
-        left: 25px;
-        top: 25px;
-        width: 50px;
-        height: 50px;
-        background-color: #9bffaf;
-        animation: flip 1s infinite;
-    }
+.loader:before {
+    content: "";
+    position: absolute;
+    left: 25px;
+    top: 25px;
+    width: 50px;
+    height: 50px;
+    background-color: #9bffaf;
+    animation: flip 1s infinite;
+}
 
 
 .tutorial-link {
