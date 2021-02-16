@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Microsoft.EntityFrameworkCore;
+﻿//using Microsoft.EntityFrameworkCore;
+using System.Data.Entity;
 
 namespace WebApplicationProject.Models
 {
@@ -12,5 +9,8 @@ namespace WebApplicationProject.Models
         public string header { get; set; }
         public string info { get; set; }
     }
-
+    public class NewsContext : DbContext
+    {
+        public DbSet<News> News { get; set; }
+    }
 }
