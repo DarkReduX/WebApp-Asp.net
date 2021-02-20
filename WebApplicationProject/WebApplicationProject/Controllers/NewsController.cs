@@ -17,7 +17,7 @@ namespace WebApplicationProject.Controllers
         // GET: News
         public ActionResult Index()
         {
-            return View(db.News.ToList());
+            return View(db.news.ToList());
         }
 
         // GET: News/Details/5
@@ -27,7 +27,7 @@ namespace WebApplicationProject.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            News news = db.News.Find(id);
+            News news = db.news.Find(id);
             if (news == null)
             {
                 return HttpNotFound();
@@ -36,6 +36,7 @@ namespace WebApplicationProject.Controllers
         }
 
         // GET: News/Create
+        [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
             return View();
@@ -44,13 +45,14 @@ namespace WebApplicationProject.Controllers
         // POST: News/Create
         // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
         // сведения см. в разделе https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,header,info")] News news)
         {
             if (ModelState.IsValid)
             {
-                db.News.Add(news);
+                db.news.Add(news);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -59,13 +61,14 @@ namespace WebApplicationProject.Controllers
         }
 
         // GET: News/Edit/5
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            News news = db.News.Find(id);
+            News news = db.news.Find(id);
             if (news == null)
             {
                 return HttpNotFound();
@@ -76,9 +79,9 @@ namespace WebApplicationProject.Controllers
         // POST: News/Edit/5
         // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
         // сведения см. в разделе https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "admin")]
         public ActionResult Edit([Bind(Include = "ID,header,info")] News news)
         {
             if (ModelState.IsValid)
@@ -91,14 +94,13 @@ namespace WebApplicationProject.Controllers
         }
 
         // GET: News/Delete/5
-        [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            News news = db.News.Find(id);
+            News news = db.news.Find(id);
             if (news == null)
             {
                 return HttpNotFound();
@@ -107,12 +109,13 @@ namespace WebApplicationProject.Controllers
         }
 
         // POST: News/Delete/5
+        [Authorize(Roles = "admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            News news = db.News.Find(id);
-            db.News.Remove(news);
+            News news = db.news.Find(id);
+            db.news.Remove(news);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
