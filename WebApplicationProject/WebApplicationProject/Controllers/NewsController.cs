@@ -72,12 +72,12 @@ namespace WebApplicationProject.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            News news = db.news.Find(id);
-            if (news == null)
+            News post = db.news.Find(id);
+            if (post == null)
             {
                 return HttpNotFound();
             }
-            return View(news);
+            return View(post);
         }
 
         // POST: News/Edit/5
@@ -86,15 +86,15 @@ namespace WebApplicationProject.Controllers
         [Authorize(Roles = "admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,header,info")] News news)
+        public ActionResult Edit([Bind(Include = "ID,header,info")] News post)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(news).State = EntityState.Modified;
+                db.Entry(post).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(news);
+            return View(post);
         }
 
         // GET: News/Delete/5
@@ -104,12 +104,12 @@ namespace WebApplicationProject.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            News news = db.news.Find(id);
-            if (news == null)
+            News post = db.news.Find(id);
+            if (post == null)
             {
-                return HttpNotFound();
+                return HttpNotFound();  
             }
-            return View(news);
+            return View(post);
         }
 
         // POST: News/Delete/5
