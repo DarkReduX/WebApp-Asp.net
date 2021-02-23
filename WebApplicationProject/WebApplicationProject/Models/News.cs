@@ -17,6 +17,7 @@ namespace WebApplicationProject.Models
         [Display(Name = "Содержание поста")]
         [DataType(DataType.MultilineText)]
         public string info { get; set; }
+        public byte[] Image { get; set; }
     }
     public class PageInfo
     {
