@@ -1,5 +1,5 @@
-﻿@model IEnumerable<WebApplicationProject.Models.News>
-
+﻿@model WebApplicationProject.Models.NewsViewModel
+@using WebApplicationProject.Helper
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -13,28 +13,33 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.header)
+            @Html.DisplayNameFor(model => model.posts[0].header);
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.info)
+            @Html.DisplayNameFor(model => model.posts[0].info)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.header)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.info)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model.posts)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.header)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.info)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
 
 </table>
+
+<div class="pagination-lg">
+    @Html.PageLinks(Model.PageInfo, x => Url.Action("Index", new { page = x }))
+</div>

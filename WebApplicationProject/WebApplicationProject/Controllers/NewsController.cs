@@ -15,9 +15,13 @@ namespace WebApplicationProject.Controllers
         private NewsContext db = new NewsContext();
 
         // GET: News
-        public ActionResult Index()
+        public ActionResult Index(int page=1, int pageSize = 10)
         {
-            return View(db.news.ToList());
+            List<News> allPosts = db.news.ToList();
+            List<News> postsPerPage = allPosts.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+            PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = pageSize, TotalItems = allPosts.Count };
+            NewsViewModel newsViewModel = new NewsViewModel() { PageInfo = pageInfo, posts = postsPerPage };
+            return View(newsViewModel);
         }
 
         // GET: News/Details/5
