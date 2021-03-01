@@ -60,8 +60,8 @@ namespace WebApplicationProject
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{
-            //    ClientId = "",
-            //    ClientSecret = ""
+            //    ClientId = "575664230680-qr76guuahoe906igtqnggcg8jha3ugb3.apps.googleusercontent.com",
+            //    ClientSecret = "XxjHP_qmM5mgD5U8OwXQEECa"
             //});
         }
     }
