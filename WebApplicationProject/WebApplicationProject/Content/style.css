@@ -31,9 +31,11 @@ body {
 a {
     color: #b52459;
 }
-.page-head{
+
+.page-head {
     margin: 50px;
 }
+
 .btn-primary {
     color: #fff;
     background-color: #4e714e;
@@ -156,6 +158,46 @@ html {
     tranform: translateX(-50%);
     font-weight: bold;
 }
+
+.post-header-img{
+    max-width: 800px;
+    min-width: 600px;
+    height: 100px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.form-input {
+    width: 250px;
+    padding: 15px;
+}
+
+    .form-input input {
+        display: none;
+    }
+
+    .form-input label {
+        display: block;
+        width: 100%;
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+        background: #333;
+        color: #fff;
+        font-size: 15px;
+        font-family: "Open Sans",sans-serif;
+        text-transform: Uppercase;
+        font-weight: 600;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+
+    .form-input img {
+        width: 100%;
+        display: none;
+        margin-top: 10px;
+    }
+
 
 #threeModel {
     width: 100%;
