@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -15,7 +16,7 @@ namespace WebApplicationProject.Controllers
         private NewsContext db = new NewsContext();
 
         // GET: News
-        public ActionResult Index(int page=1, int pageSize = 10)
+        public ActionResult Index(int page = 1, int pageSize = 10)
         {
             List<News> allPosts = db.news.ToList();
             List<News> postsPerPage = allPosts.Skip((page - 1) * pageSize).Take(pageSize).ToList();
@@ -52,10 +53,16 @@ namespace WebApplicationProject.Controllers
         [Authorize(Roles = "admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,header,info")] News news)
+        public ActionResult Create([Bind(Include = "ID,header,info")] News news, HttpPostedFileBase uploadImage)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && uploadImage != null)
             {
+                byte[] imageData = null;
+                using (BinaryReader binaryReader = new BinaryReader(uploadImage.InputStream))
+                {
+                    imageData = binaryReader.ReadBytes(uploadImage.ContentLength);
+                }
+                news.Image = imageData; 
                 db.news.Add(news);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -108,7 +115,7 @@ namespace WebApplicationProject.Controllers
             News post = db.news.Find(id);
             if (post == null)
             {
-                return HttpNotFound();  
+                return HttpNotFound();
             }
             return View(post);
         }
