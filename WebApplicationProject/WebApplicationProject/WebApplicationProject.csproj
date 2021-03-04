@@ -254,8 +254,6 @@
     <Compile Include="Helper\PagingHelper.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbInitializer.cs" />
-    <Compile Include="Models\ApplicationRole.cs" />
-    <Compile Include="Models\ApplicationRoleManager.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\News.cs" />
@@ -334,8 +332,6 @@
     <Content Include="bin\Microsoft.Owin.Security.Cookies.dll" />
     <Content Include="bin\Microsoft.Owin.Security.Cookies.xml" />
     <Content Include="bin\Microsoft.Owin.Security.dll" />
-    <Content Include="bin\Microsoft.Owin.Security.Facebook.dll" />
-    <Content Include="bin\Microsoft.Owin.Security.Facebook.xml" />
     <Content Include="bin\Microsoft.Owin.Security.Google.dll" />
     <Content Include="bin\Microsoft.Owin.Security.Google.xml" />
     <Content Include="bin\Microsoft.Owin.Security.MicrosoftAccount.dll" />
@@ -436,6 +432,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.min.js" />
     <Content Include="Content\Earth.js" />
+    <Content Include="Content\globeJS.css" />
     <Content Include="Content\model3d.js" />
     <Content Include="Content\OBJLoader.js" />
     <Content Include="Content\style.css" />
@@ -443,6 +440,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\download.png" />
     <Content Include="Images\earthbump1k.jpg" />
     <Content Include="Images\earthlights1k.jpg" />
     <Content Include="Images\earthmap1k.jpg" />
@@ -452,6 +450,7 @@
     <Content Include="fonts\16596.ttf" />
     <Content Include="fonts\MagicalStylishSansSerifDemo-qLKq.otf" />
     <Content Include="fonts\Lollipoptron-7GPD.ttf" />
+    <Content Include="Scripts\dotGlobeJs.js" />
     <Content Include="Scripts\Earth.obj" />
     <Content Include="fonts\OpenSans-Bold.ttf" />
     <Content Include="fonts\OpenSans-ExtraBold.ttf" />
