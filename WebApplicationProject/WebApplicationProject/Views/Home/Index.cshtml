@@ -8,11 +8,21 @@
     <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
 </div>
 @*<script type="text/javascript" src="~/Scripts/Earth.js"></script>*@
+<!--3d model section-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/87/three.js"></script>
+<script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/617753/ThreeOrbitControls.js"></script>
+<script src="https://rawgit.com/spite/THREE.MeshLine/master/src/THREE.MeshLine.js"></script>
+<script src="~/Scripts/dotGlobeJs.js"></script>
+<link rel="stylesheet" href="~/Content/globeJS.css" />
+<div class="globe js-globe">
+    <div class="svg-wrapper">
 
-<canvas id="threeModel"></canvas>
-<script type="module" src="~/Scripts/Earth.js">
-    
-</script>
+    </div>
+    <ul class="globe-list js-list"></ul>
+    <canvas class="globe-canvas js-canvas"></canvas>
+</div>
+@*<canvas id="threeModel"></canvas>*@
+<!--3d model section-->
 <div class="row">
     <div class="col-md-4">
         <h2>Getting started</h2>
