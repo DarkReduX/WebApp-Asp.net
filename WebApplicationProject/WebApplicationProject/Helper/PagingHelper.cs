@@ -13,19 +13,26 @@ namespace WebApplicationProject.Helper
         public static MvcHtmlString PageLinks(this HtmlHelper html, PageInfo pageInfo, Func<int, string> pageUrl)
         {
             StringBuilder result = new StringBuilder();
-            for (int i = 1; i<=pageInfo.TotalPages;i++)
+            TagBuilder ulTag = new TagBuilder("ul");
+            ulTag.AddCssClass("pagination justify-content-center");
+            result.Append(ulTag.ToString(TagRenderMode.StartTag));
+            for (int i = 1; i <= pageInfo.TotalPages; i++)
             {
-                TagBuilder tag = new TagBuilder("a");
-                tag.MergeAttribute("href", pageUrl(i));
-                tag.InnerHtml = i.ToString();
+                TagBuilder listTag = new TagBuilder("li");
+                TagBuilder aTag = new TagBuilder("a");
+                if (i != pageInfo.PageNumber)
+                    aTag.MergeAttribute("href", pageUrl(i));
+                aTag.InnerHtml = i.ToString();
                 if (i == pageInfo.PageNumber)
                 {
-                    tag.AddCssClass("selected");
-                    tag.AddCssClass("btn-primary");
+                    listTag.AddCssClass("page-item disabled");
                 }
-                tag.AddCssClass("btn btn-default");
-                result.Append(tag.ToString());
+                listTag.AddCssClass("page-item");
+                result.Append(listTag.ToString(TagRenderMode.StartTag));
+                result.Append(aTag.ToString());
+                result.Append(listTag.ToString(TagRenderMode.EndTag));
             }
+            result.Append(ulTag.ToString(TagRenderMode.EndTag));
             return MvcHtmlString.Create(result.ToString());
         }
     }
