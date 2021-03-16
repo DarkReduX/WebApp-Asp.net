@@ -8,7 +8,10 @@ namespace WebApplicationProject.Models
 {
     public class NewsContext : DbContext
     {
-            public DbSet<News> news { get; set; }
-            public DbSet<Ip> Ips { get; set; }
+        public NewsContext()
+            : base("DefaultConnection")
+        { }
+        public DbSet<News> news { get; set; }
+        public DbSet<Ip> Ips { get; set; }
     }
 }
