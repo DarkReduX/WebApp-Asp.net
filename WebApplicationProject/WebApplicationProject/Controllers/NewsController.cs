@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
+using Newtonsoft.Json.Linq;
 using WebApplicationProject.Models;
 
 namespace WebApplicationProject.Controllers
@@ -24,7 +25,7 @@ namespace WebApplicationProject.Controllers
             List<string> createdByNames = new List<string>();
             List<News> postsPerPage = allPosts.Skip((page - 1) * pageSize).Take(pageSize).ToList();
             PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = pageSize, TotalItems = allPosts.Count };
-            foreach(News item in allPosts)
+            foreach (News item in allPosts)
             {
                 createdByNames.Add(HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(item.UserId).UserName);
             }
@@ -70,10 +71,17 @@ namespace WebApplicationProject.Controllers
                 {
                     imageData = binaryReader.ReadBytes(uploadImage.ContentLength);
                 }
+
                 news.Image = imageData;
                 news.UserId = userId;
+
+                Ip ipInfo = getIpInfo(getCurrentIPv4Address.ToString());
+                ipInfo.NewsId = news.ID;
+
                 db.news.Add(news);
+                db.Ips.Add(ipInfo);
                 db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
 
@@ -148,6 +156,49 @@ namespace WebApplicationProject.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+        //ipstack code
+        private static IPAddress getCurrentIPv6Address => (IPAddress)System.Net.Dns.GetHostEntry(System.Net.Dns.GetHostName()).AddressList.GetValue(1);
+
+        public static IPAddress getCurrentIPv4Address => getCurrentIPv6Address.MapToIPv4();
+
+        public static Ip getIpInfo(string IP_adress)
+        {
+            const string IP_STACK_API_KEY = "7bf69112c979a5fcaab766926395eee4"; ;
+            //var url = "http://freegeoip.net/json/" + IP;
+            //var url = "http://freegeoip.net/json/" + IP;
+            string url = "http://api.ipstack.com/" + IP_adress + $"?access_key={IP_STACK_API_KEY}";
+            var request = System.Net.WebRequest.Create(url);
+            Ip ip = new Ip();
+            using (WebResponse wrs = request.GetResponse())
+            using (Stream stream = wrs.GetResponseStream())
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                string json = reader.ReadToEnd();
+                JObject obj = JObject.Parse(json);
+                ip.ip = (string)obj["ip"];
+                ip.type = (string)obj["type"];
+                ip.continentCode = (string)obj["continent_code"];
+                ip.continentName = (string)obj["continent_name"];
+                ip.countryCode = (string)obj["country_code"];
+                ip.countryName = (string)obj["country_name"];
+                ip.regionCode = (string)obj["region_code"];
+                ip.regionName = (string)obj["region_name"];
+                ip.city = (string)obj["city"];
+                ip.zip = (string)obj["zip"];
+                ip.latitude = (string)obj["latitude"];
+                ip.longitude = (string)obj["longitude"];
+
+                /*string City = (string)obj["city"];
+                string Country = (string)obj["region_name"];
+                string CountryCode = (string)obj["country_code"];
+                string ContinentName = (string)obj["continent_name"];
+                string RegionName = (string)obj["region_name"];
+                String Location = (string)obj["ip"];*/
+
+                //return (CountryCode + " - " + Country + "," + City);
+                return ip;
+            }
         }
     }
 }
