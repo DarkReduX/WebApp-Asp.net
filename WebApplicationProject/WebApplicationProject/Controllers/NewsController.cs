@@ -7,6 +7,8 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using WebApplicationProject.Models;
 
 namespace WebApplicationProject.Controllers
@@ -19,9 +21,14 @@ namespace WebApplicationProject.Controllers
         public ActionResult Index(int page = 1, int pageSize = 10)
         {
             List<News> allPosts = db.news.ToList();
+            List<string> createdByNames = new List<string>();
             List<News> postsPerPage = allPosts.Skip((page - 1) * pageSize).Take(pageSize).ToList();
             PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = pageSize, TotalItems = allPosts.Count };
-            NewsViewModel newsViewModel = new NewsViewModel() { PageInfo = pageInfo, posts = postsPerPage };
+            foreach(News item in allPosts)
+            {
+                createdByNames.Add(HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(item.UserId).UserName);
+            }
+            NewsViewModel newsViewModel = new NewsViewModel() { PageInfo = pageInfo, Posts = postsPerPage, CreatedByNames = createdByNames };
             return View(newsViewModel);
         }
 
@@ -50,7 +57,6 @@ namespace WebApplicationProject.Controllers
         // POST: News/Create
         // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
         // сведения см. в разделе https://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize(Roles = "admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "admin")]
@@ -64,7 +70,6 @@ namespace WebApplicationProject.Controllers
                 {
                     imageData = binaryReader.ReadBytes(uploadImage.ContentLength);
                 }
-                news.Image = imageData; 
                 news.Image = imageData;
                 news.UserId = userId;
                 db.news.Add(news);

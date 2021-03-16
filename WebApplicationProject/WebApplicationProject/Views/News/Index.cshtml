@@ -13,27 +13,30 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.posts[0].header);
+            @Html.DisplayNameFor(model => model.Posts[0].header);
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.posts[0].info)
+            @Html.DisplayNameFor(model => model.Posts[0].info)
         </th>
         <th></th>
     </tr>
 
-    @foreach (var item in Model.posts)
+    @for (int i = 0; i < Model.Posts.Count; i++)
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.header)
+                @Html.DisplayFor(Model => Model.Posts[i].header)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.info)
+                @Html.DisplayFor(Model => Model.CreatedByNames[i])
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                @Html.DisplayFor(modelItem => Model.Posts[i].info)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = Model.Posts[i].ID }) |
+                @Html.ActionLink("Details", "Details", new { id = Model.Posts[i].ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = Model.Posts[i].ID })
             </td>
         </tr>
     }
