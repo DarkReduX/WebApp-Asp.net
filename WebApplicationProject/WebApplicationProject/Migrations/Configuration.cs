@@ -9,8 +9,7 @@ namespace WebApplicationProject.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
-            ContextKey = "WebApplicationProject.Models.NewsContext";
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(WebApplicationProject.Models.NewsContext context)
