@@ -53,16 +53,20 @@ namespace WebApplicationProject.Controllers
         [Authorize(Roles = "admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public ActionResult Create([Bind(Include = "ID,header,info")] News news, HttpPostedFileBase uploadImage)
         {
             if (ModelState.IsValid && uploadImage != null)
             {
+                string userId = User.Identity.GetUserId();
                 byte[] imageData = null;
                 using (BinaryReader binaryReader = new BinaryReader(uploadImage.InputStream))
                 {
                     imageData = binaryReader.ReadBytes(uploadImage.ContentLength);
                 }
                 news.Image = imageData; 
+                news.Image = imageData;
+                news.UserId = userId;
                 db.news.Add(news);
                 db.SaveChanges();
                 return RedirectToAction("Index");
