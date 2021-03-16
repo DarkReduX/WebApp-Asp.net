@@ -159,12 +159,26 @@ html {
     font-weight: bold;
 }
 
-.post-header-img{
+.post-header-img {
     max-width: 800px;
     min-width: 600px;
     height: 100px;
     background-repeat: no-repeat;
     background-size: cover;
+}
+.globe-popup .background
+{
+}
+.globe-popup {
+    backdrop-filter: blur(4px);
+    background-color: #080808;
+    background-size: cover;
+    height: 50px;
+    width: 400px;
+    opacity: 0.8;
+    border-radius: 10px;
+    padding-left: 10px;
+    padding-top: 3px;
 }
 
 .form-input {
