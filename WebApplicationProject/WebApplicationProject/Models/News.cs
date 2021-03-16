@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 
 namespace WebApplicationProject.Models
@@ -18,6 +19,7 @@ namespace WebApplicationProject.Models
         [DataType(DataType.MultilineText)]
         public string info { get; set; }
         public byte[] Image { get; set; }
+        public string UserId { get; set; }
     }
     public class PageInfo
     {
@@ -31,8 +33,9 @@ namespace WebApplicationProject.Models
     }
     public class NewsViewModel
     {
-        public List<News> posts { get; set; }
+        public List<News> Posts { get; set; }
         public PageInfo PageInfo { get; set; }
+        public List<string> CreatedByNames { get; set; }
     }
 
 }
