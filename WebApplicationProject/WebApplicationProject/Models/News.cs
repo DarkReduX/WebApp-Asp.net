@@ -21,6 +21,26 @@ namespace WebApplicationProject.Models
         public byte[] Image { get; set; }
         public string UserId { get; set; }
     }
+    public class Vote
+    {
+        [Key]
+        [Column(Order = 1)]
+        public int NewsId { get; set; }
+        public virtual News post { get; set; }
+        [Key]
+        [Column(Order = 2)]
+        public string UserId { get; set; }
+        public virtual ApplicationUser User { get; set; }
+
+    }
+    public class Comment
+    {
+        [Key]
+        public int UserId { get; set; }
+        [Key]
+        public int NewsId { get; set; }
+        public string Message { get; set; }
+    }
     public class PageInfo
     {
         public int PageNumber { get; set; }
@@ -38,4 +58,9 @@ namespace WebApplicationProject.Models
         public List<string> CreatedByNames { get; set; }
     }
 
+    public class PostViewModel
+    {
+        public News Post { get; set; }
+        public string UserName { get; set; }
+    }
 }
