@@ -9,7 +9,7 @@ namespace WebApplicationProject.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(WebApplicationProject.Models.NewsContext context)
