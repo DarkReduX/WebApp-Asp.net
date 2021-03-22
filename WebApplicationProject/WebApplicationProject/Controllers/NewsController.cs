@@ -148,6 +148,41 @@ namespace WebApplicationProject.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+        public ActionResult AddComment(int? newsId)
+        {
+            if (!newsId.HasValue)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            var news = db.news.FirstOrDefault(n => n.ID == newsId.Value);
+
+            if (news == null)
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+
+            ViewBag.NewsId = newsId;
+
+            return PartialView("_AddComment");
+        }
+        [HttpPost]
+        [Authorize]
+        public ActionResult AddComment(CommentAddViewModel vm)
+        {
+            Comment comment = new Comment
+            {
+                Id = Guid.NewGuid(),
+                NewsId = vm.NewsId,
+                Message = vm.Message,
+                //Topic = vm.Topic,
+
+
+                UserId = User.Identity.GetUserId()
+            };
+
+            db.Comments.Add(comment);
+
+            db.SaveChanges();
+
+            return Json(new { Success = true });
+        }
 
         protected override void Dispose(bool disposing)
         {
@@ -158,7 +193,7 @@ namespace WebApplicationProject.Controllers
             base.Dispose(disposing);
         }
         //ipstack code
-        private static IPAddress getCurrentIPv6Address => (IPAddress)System.Net.Dns.GetHostEntry(System.Net.Dns.GetHostName()).AddressList.GetValue(1);
+        private static IPAddress getCurrentIPv6Address => (IPAddress)System.Net.Dns.GetHostEntry(System.Net.Dns.GetHostName()).AddressList.GetValue(0);
 
         public static IPAddress getCurrentIPv4Address => getCurrentIPv6Address.MapToIPv4();
 
