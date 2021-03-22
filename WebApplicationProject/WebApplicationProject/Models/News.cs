@@ -20,6 +20,11 @@ namespace WebApplicationProject.Models
         public string info { get; set; }
         public byte[] Image { get; set; }
         public string UserId { get; set; }
+        public virtual IList<Comment> Comments { get; set; }
+        public News()
+        {
+            Comments = new List<Comment>();
+        }
     }
     public class Vote
     {
@@ -35,11 +40,22 @@ namespace WebApplicationProject.Models
     }
     public class Comment
     {
-        [Key]
-        public int UserId { get; set; }
-        [Key]
-        public int NewsId { get; set; }
+        public Guid Id { get; set; }
+
+        public string Topic { get; set; }
+        [Required]
         public string Message { get; set; }
+
+        public virtual News News { get; set; }
+
+        [ForeignKey("News")]
+        public int NewsId { get; set; }
+
+        public virtual ApplicationUser User { get; set; }
+
+        [ForeignKey("User")]
+        public string UserId { get; set; }
+
     }
     public class PageInfo
     {
@@ -51,6 +67,14 @@ namespace WebApplicationProject.Models
             get { return (int)Math.Ceiling((decimal)TotalItems / PageSize); }
         }
     }
+
+    public class CommentAddViewModel
+    {
+        public string Message { get; set; }
+
+        public int NewsId { get; set; }
+    }
+
     public class NewsViewModel
     {
         public List<News> Posts { get; set; }
