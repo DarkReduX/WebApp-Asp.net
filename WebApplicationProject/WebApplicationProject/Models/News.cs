@@ -70,6 +70,7 @@ namespace WebApplicationProject.Models
 
     public class CommentAddViewModel
     {
+        [Display(Name = "Сообщение  ")]
         public string Message { get; set; }
 
         public int NewsId { get; set; }
