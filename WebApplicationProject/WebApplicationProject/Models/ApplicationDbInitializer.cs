@@ -8,9 +8,9 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace WebApplicationProject.Models
 {
-    public class ApplicationDbInitializer : DropCreateDatabaseAlways<NewsContext>
+    public class ApplicationDbInitializer : DropCreateDatabaseAlways<ApplicationDbContext>
     {
-        protected override void Seed(NewsContext context)
+        protected override void Seed(ApplicationDbContext context)
         {
             var userManager = new ApplicationUserManager(new UserStore<ApplicationUser>(context));
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));

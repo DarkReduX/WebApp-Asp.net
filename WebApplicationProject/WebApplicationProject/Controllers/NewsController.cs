@@ -16,7 +16,7 @@ namespace WebApplicationProject.Controllers
 {
     public class NewsController : Controller
     {
-        private NewsContext db = new NewsContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: News
         public ActionResult Index(int page = 1, int pageSize = 10)
