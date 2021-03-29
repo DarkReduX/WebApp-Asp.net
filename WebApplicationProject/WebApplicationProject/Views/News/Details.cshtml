@@ -5,11 +5,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+@*<h2 class="page-header">Details</h2>*@
 
-<div>
-    <h4>News</h4>
-    <hr />
+<div class="page-header">
     @{
         if (Model.Image != null)
         {
@@ -19,42 +17,41 @@
             <img src="@imgSrc" class="post-header-img" />
         }
     }
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.header)
-        </dt>
+    <h1 class="post__title">
+        @Html.DisplayFor(model => model.header)
+    </h1>
+    <div class="post__left-column">
+        <div class="post__inner">
 
-        <dd>
-            @Html.DisplayFor(model => model.header)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.info)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.info)
-        </dd>
-
-    </dl>
-    <button id="btn-addCom" class="btn btn-warning">
-        Add Comment
-    </button>
-    <div class="form-horizontal">
-        Comments:
-        @foreach (var comment in Model.Comments)
-        {
-            <div class="form-group">
-                <p>@comment.Message</p>
-                <p>Posted by: @comment.User.UserName</p>
+            <div class="post__box">
+                <div class="post__text">
+                    @Html.DisplayFor(model => model.info)
+                </div>
             </div>
-        }
+
+
+            <button id="btn-addCom" class="btn btn-primary" style="        margin-top: 20px;
+        margin-bottom: 20px;
+        align-self: center;">
+                Add Comment
+            </button>
+            <div class="form-horizontal">
+                Comments:
+                @foreach (var comment in Model.Comments)
+                {
+                        <div class="comment-item">
+                            <p>@comment.Message</p>
+                            <p>Posted by: @comment.User.UserName</p>
+                        </div>
+                }
+            </div>
+        </div>
     </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
 
 @section scripts{
     <script type="text/javascript">

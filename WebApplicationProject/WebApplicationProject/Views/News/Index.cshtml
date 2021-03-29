@@ -5,12 +5,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
-
+<h2 class="page-header">Index</h2>
+@if (User.IsInRole("admin")) { 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
+}
+@*<table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Posts[0].header);
@@ -19,30 +20,32 @@
             @Html.DisplayNameFor(model => model.Posts[0].info)
         </th>
         <th></th>
-    </tr>
-
+    </tr>*@
+<div class="post__left-column">
     @for (int i = 0; i < Model.Posts.Count; i++)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(Model => Model.Posts[i].header)
-            </td>
-            <td>
+        <div class="post-item">
+            <div class="post__title">
+                @Html.ActionLink(Model.Posts[i].header, "Details", new { id = Model.Posts[i].ID})
+            </div>
+            <div class="post__text">
                 @Html.DisplayFor(Model => Model.CreatedByNames[i])
-            </td>
-            <td>
+
                 @Html.DisplayFor(modelItem => Model.Posts[i].info)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = Model.Posts[i].ID }) |
-                @Html.ActionLink("Details", "Details", new { id = Model.Posts[i].ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = Model.Posts[i].ID })
-            </td>
-        </tr>
+               
+                @if (User.IsInRole("admin"))
+                {
+                <div class="post__action-list">
+                    @Html.ActionLink("Edit", "Edit", new { id = Model.Posts[i].ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = Model.Posts[i].ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = Model.Posts[i].ID })
+                </div>
+                }
+            </div>
+        </div>
     }
 
-</table>
-
+</div>
 <div class="pagination-lg">
     @Html.PageLinks(Model.PageInfo, x => Url.Action("Index", new { page = x }))
 </div>

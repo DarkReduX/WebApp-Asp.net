@@ -20,20 +20,31 @@
     font-family: "Open Sans Extra-Bold";
     src: url("../fonts/OpenSans-ExtraBold.ttf");
 }
+.nav{
+    font-size: 14px;
+    font-weight:bold;
+}
 
 body {
     background-color: black;
     color: white;
-    font-family: 'Open Sans Extra-Bold';
-    font-weight: 500;
+    font-family: Arial;
+    font-weight: bold;
+    
 }
 
 a {
     color: #b52459;
 }
 
-.page-head {
-    margin: 50px;
+/*.page-header {
+    padding-bottom: 9px;
+    margin: 100px 0 20px;
+    border-bottom: 1px solid #eeeeee;
+}*/
+
+.body-content{
+    margin-top: 20px;
 }
 
 .btn-primary {
@@ -41,12 +52,83 @@ a {
     background-color: #4e714e;
     border-color: black;
 }
+.post__left-column {
+    width: 100%;
+    max-width: 77%;
+    padding-right: 68px;
+}
+.post__right-column {
 
-.news {
-    margin: 150px;
-    background: #1e1e1e;
+}
+.post-item {
+    padding-top: 20px;
+    border-radius: 10px;
+    height:10%;
+    max-width: 100%;
+    max-height: 10%;
+    background-color: #1e1e1e;
+    padding: 16px 16px 24px 16px;
+    margin-bottom: 30px;
+    word-wrap: break-word;
 }
 
+post__action-list{
+    
+}
+
+.post__inner {
+}
+
+/*@media only screen and (max-width: 1024px);*/
+.post__title a{
+    font-size: 48px;
+    margin: 4px, 0, 16px;
+    color: #c87732;
+    font-weight: bold;
+}
+
+.post__title {
+    font-size: 48px;
+    margin: 4px, 0, 16px;
+    color: #c87732;
+    font-weight: bold;
+}
+
+/*.post__title {
+    font-size: 48px;
+    margin: 8px, 0, 16px;
+    text-transform: uppercase;
+    line-height: normal;
+}*/
+
+.post__box {
+    border-radius: 10px;
+    max-width: 100%;
+    background-color: #1e1e1e;
+    padding: 16px 16px 24px 16px;
+    word-wrap: break-word;
+}
+
+.post__text {
+    font-size: 20px;
+    font-weight: 200;
+}
+
+
+.comment-list{
+
+}
+
+.comment-item {
+    margin-bottom: 30px;
+    position: relative;
+    font-size: 16px;
+    background-color: #1F1F22;
+    max-width: 400px;
+    width: 100%;
+    border-radius: 20px;
+    padding: 4px 0 4px 16px;
+}
 
 .article-header {
 }
@@ -88,6 +170,7 @@ html {
     margin: 0;
     padding: 0;
     background: #25252B;
+    word-wrap: break-word;
 }
 
 * {
@@ -158,7 +241,10 @@ html {
     tranform: translateX(-50%);
     font-weight: bold;
 }
-
+.modal-content {
+    background-color: #1c1c1c;
+    color: white;
+}
 .post-header-img {
     max-width: 800px;
     min-width: 600px;
