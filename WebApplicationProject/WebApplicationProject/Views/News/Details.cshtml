@@ -10,6 +10,7 @@
 <div>
     <h4>News</h4>
     <hr />
+<<<<<<< Updated upstream
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.header)
@@ -27,9 +28,41 @@
             @Html.DisplayFor(model => model.info)
         </dd>
 
+=======
+    @{
+        if (Model.Image != null)
+        {
+            var base64 = Convert.ToBase64String(Model.Image);
+            var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+
+            <img src="@imgSrc" class="post-header-img" />
+        }
+    }
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.header)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.header)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.info)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.info)
+        </dd>
+
+>>>>>>> Stashed changes
     </dl>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes

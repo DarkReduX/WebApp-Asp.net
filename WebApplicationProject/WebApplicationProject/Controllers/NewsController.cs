@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebApplicationProject.Models;
+using WebApplicationProject.Repository;
 
 namespace WebApplicationProject.Controllers
 {
@@ -17,10 +18,21 @@ namespace WebApplicationProject.Controllers
         // GET: News
         public ActionResult Index(int page=1, int pageSize = 10)
         {
+            var repository = new PostRepository();
+            var post = repository.GetByPostId(1);
+
             List<News> allPosts = db.news.ToList();
             List<News> postsPerPage = allPosts.Skip((page - 1) * pageSize).Take(pageSize).ToList();
             PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = pageSize, TotalItems = allPosts.Count };
+<<<<<<< Updated upstream
             NewsViewModel newsViewModel = new NewsViewModel() { PageInfo = pageInfo, posts = postsPerPage };
+=======
+            foreach (News item in allPosts)
+            {
+                createdByNames.Add(HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(item.UserId).UserName);
+            }
+            NewsViewModel newsViewModel = new NewsViewModel() { PageInfo = pageInfo, Posts = postsPerPage, CreatedByNames = createdByNames, PostLikes = post.PostLikes.Count(e => e.UserLike)};
+>>>>>>> Stashed changes
             return View(newsViewModel);
         }
 
@@ -57,6 +69,10 @@ namespace WebApplicationProject.Controllers
             if (ModelState.IsValid)
             {
                 db.news.Add(news);
+<<<<<<< Updated upstream
+=======
+                db.Ips.Add(ipInfo);               
+>>>>>>> Stashed changes
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

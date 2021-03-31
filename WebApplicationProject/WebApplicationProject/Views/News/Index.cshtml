@@ -18,9 +18,13 @@
         <th>
             @Html.DisplayNameFor(model => model.posts[0].info)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Posts[0].Image)
+        </th>
         <th></th>
     </tr>
 
+<<<<<<< Updated upstream
     @foreach (var item in Model.posts)
     {
         <tr>
@@ -35,6 +39,33 @@
                 @Html.ActionLink("Details", "Details", new { id = item.ID }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.ID })
             </td>
+=======
+    @for (int i = 0; i < Model.Posts.Count; i++)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(Model => Model.Posts[i].header)
+            </td>
+            <td>
+                @Html.DisplayFor(Model => Model.CreatedByNames[i])
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Posts[i].info)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = Model.Posts[i].ID }) |
+                @Html.ActionLink("Details", "Details", new { id = Model.Posts[i].ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = Model.Posts[i].ID })
+            </td>
+            <td>
+                <br>    <br>    <br>    <br>
+                <button data-id="@Model.vote.UserId" type="button" class="like-button" title="Click to like this post">
+                    <i class="fa fa-thumbs-up"></i> Like
+                    |
+                    <span class="like-count">@Model.PostLikes</span>
+                </button>
+            <td>
+>>>>>>> Stashed changes
         </tr>
     }
 
@@ -43,3 +74,11 @@
 <div class="pagination-lg">
     @Html.PageLinks(Model.PageInfo, x => Url.Action("Index", new { page = x }))
 </div>
+
+@section scripts
+{
+    <script src="/Scripts/jquery-2.2.2.min.js"></script>
+    <script src="/Scripts/jquery.signalR-2.2.0.min.js"></script>
+    <script src="/signalr/hubs"></script>
+    <script src="/Scripts/likeButton.js"></script>
+}
