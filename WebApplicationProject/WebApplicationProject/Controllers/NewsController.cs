@@ -19,12 +19,27 @@ namespace WebApplicationProject.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: News
-        public ActionResult Index(int page = 1, int pageSize = 10)
+        public ActionResult Index(string sortOrder, int page = 1, int pageSize = 10)
         {
             List<News> allPosts = db.news.ToList();
+
+
+            switch (sortOrder)
+            {
+                case "Newest":
+                    allPosts = allPosts.OrderByDescending(p => p.ID).ToList();
+                    break;
+                case "Oldest":
+                    allPosts = allPosts.OrderBy(p => p.ID).ToList();
+                    break;
+                default:
+                    allPosts = allPosts.OrderByDescending(p => p.ID).ToList();
+                    break;
+            }
+
             List<string> createdByNames = new List<string>();
             List<News> postsPerPage = allPosts.Skip((page - 1) * pageSize).Take(pageSize).ToList();
-            PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = pageSize, TotalItems = allPosts.Count };
+            PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = pageSize, TotalItems = allPosts.Count, SortOrder = sortOrder };
             foreach (News item in allPosts)
             {
                 createdByNames.Add(HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(item.UserId).UserName);
@@ -45,6 +60,12 @@ namespace WebApplicationProject.Controllers
             {
                 return HttpNotFound();
             }
+            string userId = User.Identity.GetUserId();
+            if (User.Identity.IsAuthenticated && db.readedPosts.FirstOrDefault(d => d.UserId == userId && d.PostId == id) == null)
+            {
+                db.readedPosts.Add(new ReadedPost { PostId = (int)id, UserId = User.Identity.GetUserId() });
+                db.SaveChanges();
+            }
             return View(news);
         }
 
@@ -63,19 +84,24 @@ namespace WebApplicationProject.Controllers
         [Authorize(Roles = "admin")]
         public ActionResult Create([Bind(Include = "ID,header,info")] News news, HttpPostedFileBase uploadImage)
         {
-            if (ModelState.IsValid && uploadImage != null)
+            if (ModelState.IsValid /*&& uploadImage != null*/)
             {
                 string userId = User.Identity.GetUserId();
-                byte[] imageData = null;
-                using (BinaryReader binaryReader = new BinaryReader(uploadImage.InputStream))
-                {
-                    imageData = binaryReader.ReadBytes(uploadImage.ContentLength);
-                }
+                //byte[] imageData = null;
+                //using (BinaryReader binaryReader = new BinaryReader(uploadImage.InputStream))
+                //{
+                //    imageData = binaryReader.ReadBytes(uploadImage.ContentLength);
+                //}
 
-                news.Image = imageData;
+                //news.Image = imageData;
                 news.UserId = userId;
+                string userIp = Request.UserHostAddress;
+                Ip ipInfo;
+                if (userIp =="::1")
+                 ipInfo = getIpInfo(getCurrentIPv4Address.ToString());
+                else
+                    ipInfo = getIpInfo(getCurrentIPv4Address.ToString());
 
-                Ip ipInfo = getIpInfo(getCurrentIPv4Address.ToString());
                 ipInfo.NewsId = news.ID;
 
                 db.news.Add(news);
@@ -184,6 +210,29 @@ namespace WebApplicationProject.Controllers
 
             return Json(new { Success = true });
         }
+        public int GetPostLikes(int newsId)
+        {
+            return db.Votes.Count(vote => vote.NewsId == newsId);
+        }
+        [Authorize]
+        public ActionResult VotePost(int newsId)
+        {
+            string userId = User.Identity.GetUserId();
+
+            Vote vote =
+            db.Votes.FirstOrDefault(v => v.NewsId == newsId && v.UserId == userId);
+            if (vote != null)
+            {
+                db.Votes.Remove(vote);
+            }
+            else
+            {
+                db.Votes.Add(new Vote() { NewsId = newsId, UserId = userId });
+            }
+            db.SaveChanges();
+            return Json(new { success = GetPostLikes(newsId) });
+        }
+
 
         protected override void Dispose(bool disposing)
         {
