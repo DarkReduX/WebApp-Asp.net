@@ -9,6 +9,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Web;
 using System.Web.Script.Serialization;
 using System.Web.Services;
+using Microsoft.AspNet.Identity;
 using WebApplicationProject.Models;
 
 namespace WebApplicationProject
@@ -30,10 +31,17 @@ namespace WebApplicationProject
         {
             List<GlobeDataModel> globeData = new List<GlobeDataModel>();
             string CS = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            string userId = User.Identity.GetUserId();
+            string selectUnReadedPosts = "";
+            if (userId != null)
+            {
+                selectUnReadedPosts = " And ReadedPosts.UserId <> " + "'" + userId.ToString() + "'" + " and ReadedPosts.PostId = News.ID ";
+            }
+            string cmdText = "select top 50 News.ID, header, UserName, latitude, longitude, countryName From News join AspNetUsers on News.UserId = AspNetUsers.Id join Ips on Ips.NewsId = News.ID;";
             using (SqlConnection sqlConnection = new SqlConnection(CS))
             {
                 SqlCommand cmd = new SqlCommand(
-                    "SELECT TOP 50 News.ID, (SELECT UserName FROM AspNetUsers WHERE AspNetUsers.Id = News.UserId) as UserName, header, latitude, longitude, countryName FROM [dbo].[News], [dbo].[Ips] WHERE News.ID = NewsId"
+                   cmdText
                     , sqlConnection);
                 cmd.CommandType = CommandType.Text;
                 sqlConnection.Open();
