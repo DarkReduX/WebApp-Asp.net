@@ -21,14 +21,15 @@ namespace WebApplicationProject.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("DefaultConnection")
         {
+
         }
         public DbSet<News> news { get; set; }
         public DbSet<Ip> Ips { get; set; }
         public DbSet<Vote> Votes { get; set; }
         public DbSet<Comment> Comments { get; set; }
-
+        public DbSet<ReadedPost> readedPosts { get; set; }
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
