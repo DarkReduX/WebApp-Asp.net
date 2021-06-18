@@ -62,15 +62,27 @@ namespace WebApplicationProject.Models
         public int PageNumber { get; set; }
         public int PageSize { get; set; }
         public int TotalItems { get; set; }
+        public string SortOrder { get; set; }
         public int TotalPages
         {
             get { return (int)Math.Ceiling((decimal)TotalItems / PageSize); }
         }
     }
+    public class ReadedPost
+    {
+        [Key]
+        [Column(Order = 1)]
+        public string UserId { get; set; }
+        public virtual ApplicationUser User {get;set;}
+        [Key]
+        [Column(Order = 2)]
+        public int PostId { get; set; }
+        public virtual News Post { get; set; }
+    }
 
     public class CommentAddViewModel
     {
-        [Display(Name = "Сообщение  ")]
+        [Display(Name = "Сообщение")]
         public string Message { get; set; }
 
         public int NewsId { get; set; }
@@ -82,7 +94,6 @@ namespace WebApplicationProject.Models
         public PageInfo PageInfo { get; set; }
         public List<string> CreatedByNames { get; set; }
     }
-
     public class PostViewModel
     {
         public News Post { get; set; }
